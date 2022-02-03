@@ -7,7 +7,7 @@ import (
 
 type Equipment struct {
 	ID           int
-	Name         string `json:"name"`
+	Name         string 
 	Type         string
 	SerialNumber string
 }
@@ -27,27 +27,6 @@ func NewEquipment(name string, equipmentType string, serialNumber string) (*Equi
 	}
 
 	return &Equipment{Name: name, Type: equipmentType, SerialNumber: serialNumber}, nil
-}
-
-func (equip *Equipment) Update(updatedEquipment *Equipment) error {
-
-	if updatedEquipment.Name == "" {
-		return errors.New("name is empty")
-	}
-
-	if updatedEquipment.Type == "" {
-		return errors.New("equipmentType is empty")
-	}
-
-	if updatedEquipment.SerialNumber == "" {
-		return errors.New("serialNumber is empty")
-	}
-
-	equip.Name = updatedEquipment.Name
-	equip.Type = updatedEquipment.Type
-	equip.SerialNumber = updatedEquipment.SerialNumber
-
-	return nil
 }
 
 func FromRepo(record *db.Record) Equipment {
